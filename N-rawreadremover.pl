@@ -1,8 +1,7 @@
 #!/usr/bin/perl
 #Priyanka Kulkarni
 #Friday, February 20th
-#N raw read remover from fastq file - removes reads with N nucleotides and returns how
-many rejected
+#N raw read remover from fastq file - removes reads with N nucleotides and returns how many rejected
 use strict; use warnings;
 die "usage: pskulkarni_N-rawread-remover.pl &lt;inputfq&gt; &lt;outputfq&gt;" if @ARGV ne
 2;  #if not two ARGV list then print usage
