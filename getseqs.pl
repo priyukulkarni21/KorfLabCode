@@ -1,6 +1,6 @@
-#!/usr/bin/perl
+/usr/bin/perl
 #take a fasta file as input and also a list of seqs and pull out those seqs that are matching
-#tuesday april 21, 2015
+
 
 use strict; use warnings;
 my ($input, $input2) = @ARGV;
