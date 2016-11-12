@@ -9,7 +9,6 @@ package FeatureComp2;
 #beg => 100,
 #end => 200,
 #};
-# for now, all I'm doing is just reading in the features and printing them!
 
 sub overlap {
         my ($f1, $f2) = @_;
