@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+use strict; use warnings;
+# Feature Generator
+# Sunday, November 6, 2016
+
+# Generates random bed file
+
+# There are 23 chr and start and stop will be from 1 to 100000 random 
+
+
+die "usage: featuregenerator.pl <num of chr> <len of chr> <max dist bw coords> <num of feats per chr> \n" unless @ARGV == 4; 
+my ($chr, $len, $dist, $features) = @ARGV;
+
+my @nums = (1..int($chr));	# nums 1..23 for chromosomes
+my $j = 0;
+my $sta = 0;
+my $sto = 0;;
+
+foreach my $i (@nums){
+	$j = 0; 
+	while ($j != $features){
+		print $i, "\t";
+		$sta = int(rand($len));
+		$sto = $sta + (int(rand($dist)));
+		print $sta, "\t", $sto, "\n";
+		$j++;
+	}
+	
+}
