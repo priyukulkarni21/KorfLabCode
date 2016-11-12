@@ -1,17 +1,17 @@
 #!/usr/bin/perl
-#use strict; use warnings;
+use strict; use warnings;
 use List::MoreUtils qw/ uniq /;
 use FeatureComp2;
 
 ## Open up one file and grab the first feature. Open up a second file and compare the feature to all other features. Repeat until done.
 ## as many lines as there are in the first file, open it up.
 
-unless (@ARGV == 2) {die "usage: ./FeatureComparison <bed1> <bed2>"};
+unless (@ARGV == 2) {die "usage: ./FeatureComp2.pl <bed1> <bed2>"};
 
 
 ## Count the lines in the first bed file
 
-open(my $in, "<", $ARGV[0]);	
+open(my $in, "<", $ARGV[0]) or die "error opening $ARGV[0] for reading";	
 my $count =0;
 while(<$in>){
 	$count++
@@ -42,7 +42,7 @@ for (my $i = 0; $i <= $count; $i++){		# for each of the lines in first bed file
 	}
 	close $in;
 
-	open (my $in2, "<", $ARGV[1]);		# open file 2
+	open (my $in2, "<", $ARGV[1]) or die "error opening $ARGV[1] for reading";	# open file 2
 	while (<$in2>){
 		chomp;
 		my ($chr2, $start2, $stop2) = split(/\t/, $_);	# split each line and save in hash
