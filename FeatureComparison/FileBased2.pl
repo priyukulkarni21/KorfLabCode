@@ -6,7 +6,7 @@ use FeatureComp2;
 ## Open up one file and grab the first feature. Open up a second file and compare the feature to all other features. Repeat until done.
 ## as many lines as there are in the first file, open it up.
 
-unless (@ARGV == 2) {die "usage: ./FeatureComparison <bed1> <bed2>"};
+unless (@ARGV == 2) {die "usage: ./FeatureComp2 <bed1> <bed2>"};
 
 
 ## Count the lines in the first bed file
