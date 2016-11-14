@@ -1,0 +1,58 @@
+#!/usr/bin/perl
+use strict; use warnings;
+use FeatureComp2;
+use List::MoreUtils qw/ uniq /;
+
+## Double array-based linear search
+## Read one file into an array. Open the other file and compare each feature to the array of features.
+
+die "usage: ./ArrayBasedLS.pl <bed1> <bed2>" unless @ARGV ==2 ;
+
+my ($inp, $inp2) = @ARGV;
+
+my @arr1 = @{read_bed($inp)}; 		# read bed files into arrays of hashes
+my @arr2 = @{read_bed($inp2)};
+
+
+# read bed file into array of hashes
+# return a reference to the array
+
+sub read_bed{
+	my ($file) = @_;
+	my @arr;
+	open (my $in, $file) or die "error reading file";
+	while (<$in>){
+		chomp;
+		my ($chr, $start, $stop) = split (/\t/, $_);
+		push @arr, {
+			chrom => $chr, 
+			beg  => $start, 
+			end => $stop, 
+		};
+	}
+	close $in;
+	return \@arr;
+}
+
+# so it's an array of hashes. I want to read that
+my $find = 0;
+my @newarr;
+
+for (my $i = 0; $i < scalar(@arr1); $i++){
+	for (my $j = 0; $j < scalar(@arr2); $j++){
+		my $find = FeatureComp2::overlap(\%{$arr1[$i]}, \%{$arr2[$j]});  #call overlap in FeatureComp2 package
+		if ($find == 1){		# if overlaps then push first file's feature into newarr
+			my $str = "$arr1[$i]->{chrom}\t$arr1[$i]->{beg}\t$arr1[$i]->{end}";
+			push @newarr, $str;
+			$find = 0;
+		}
+	}
+}
+
+## print unique arr 
+$"  = "\n";
+my @unarr = uniq(@newarr);
+print "@unarr\n";
+
+
+
