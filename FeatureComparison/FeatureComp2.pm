@@ -12,7 +12,7 @@ package FeatureComp2;
 
 sub overlap {
         my ($f1, $f2) = @_;
-        if ($f1->{chr} == $f2->{chr}){
+        if ($f1->{chr} eq $f2->{chr}){
 
                 if (($f1->{beg} <= $f2->{beg}) and ($f1->{end} >= $f2->{beg})){return 1;}
                 elsif(($f1->{beg} >= $f2->{beg}) and ($f1->{beg} <= $f2->{end})){return 1;}
