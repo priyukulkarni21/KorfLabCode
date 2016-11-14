@@ -13,7 +13,7 @@ use strict; use warnings;
 
 sub overlap {
         my ($f1, $f2) = @_;
-        if (int($f1->{chr}) == int($f2->{chr})){
+        if ($f1->{chrom} eq $f2->{chrom}){
                if (($f1->{beg} <= $f2->{beg}) and ($f1->{end} >= $f2->{beg})){return 1;}
                elsif(($f1->{beg} >= $f2->{beg}) and ($f1->{beg} <= $f2->{end})){return 1;}
                else {return 0;}
