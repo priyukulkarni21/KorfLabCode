@@ -8,7 +8,6 @@ use FeatureComp2;
 
 unless (@ARGV == 2) {die "usage: ./FeatureComp2.pl <bed1> <bed2>"};
 
-
 ## Count the lines in the first bed file
 
 open(my $in, "<", $ARGV[0]) or die "error opening $ARGV[0] for reading";	
@@ -19,9 +18,7 @@ while(<$in>){
 close $in;
 	
 
-
 ## Read files in and compare
-
 
 my $find = 0;
 my @arr;
@@ -72,9 +69,9 @@ print "@arr2","\n";	# print
 
 
 
-
 sub overlap {
          my ($f1, $f2) = @_;
+
 	 if ($f1->{chrom} eq $f2->{chrom}){
                  if (($f1->{beg} <= $f2->{beg}) and ($f1->{end} >= $f2->{beg})){return 1;}
                  elsif(($f1->{beg} >= $f2->{beg}) and ($f1->{beg} <= $f2->{end})){return 1;}
