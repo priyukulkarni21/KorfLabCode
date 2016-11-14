@@ -35,7 +35,7 @@ for (my $i = 0; $i <= $count; $i++){		# for each of the lines in first bed file
 		my $line = $_;
 		(($chr1, $start1, $stop1) = split(/\t/, $line)) if ($. == $i);	# split on tabs and save in array if line number matches the counter
 		%feature = (					# set up the hash
-			chr => $chr1, 		
+			chrom => $chr1, 		
 			beg => $start1,
 			end => $stop1,
 			);
@@ -47,7 +47,7 @@ for (my $i = 0; $i <= $count; $i++){		# for each of the lines in first bed file
 		chomp;
 		my ($chr2, $start2, $stop2) = split(/\t/, $_);	# split each line and save in hash
 		%feature2 = (
-			chr => $chr2,
+			chrom => $chr2,
 			beg => $start2,
 			end => $stop2,
 			);
@@ -55,7 +55,7 @@ for (my $i = 0; $i <= $count; $i++){		# for each of the lines in first bed file
 		$find = FeatureComp2::overlap(\%feature, \%feature2);	# call overlap in FeatureComp2 package. returns 0 or 1.
 
 		if ($find == 1){	# if find is 1, which means found an overlap, then push onto array that feature from file 1
-			my $str = "$feature{chr}\t$feature{beg}\t$feature{end}";
+			my $str = "$feature{chrom}\t$feature{beg}\t$feature{end}";
 			push (@arr, $str);
 			$find = 0;	# reset find;
 		}		
