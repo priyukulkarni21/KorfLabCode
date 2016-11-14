@@ -6,7 +6,7 @@ use List::MoreUtils qw/ uniq /;
 ## Double array-based linear search
 ## Read one file into an array. Open the other file and compare each feature to the array of features.
 
-die "usage: ./ArrayBasedLS.pl <bed1> <bed2>" unless @ARGV ==2 ;
+die "usage: ./DoubleArrayBasedLS.pl <bed1> <bed2>" unless @ARGV ==2 ;
 
 my ($inp, $inp2) = @ARGV;
 
