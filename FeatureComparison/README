@@ -1,0 +1,4 @@
+# ChromosomeIndexedSearch much faster than the DoubleArrayBasedLS
+# ChromosomeIndexedSearch does the same thing as DoubleArrayBasedLS at first: it reads in the files and makes an array of features for each.
+# Then, it indexes each array of features by chromosome. So now there is a hash for each file, with key as chromosome and value as corresponding array of features.
+
