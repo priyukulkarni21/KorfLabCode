@@ -33,7 +33,6 @@ foreach my $ch (keys %be1){
 		my $coor1 = $be1{$ch}{$sl};  #somehow, this $coor1 is an array
         	my $coor2 = $be2{$ch}{$sl};
 		foreach my $c1 (@$coor1){
-			my $find = 0;
 			foreach my $c2(@$coor2){
 				if (FeatureComp2::overlap($c1, $c2)){
 					push(@results, $c1) unless grep{$_ eq $c1} @results;
