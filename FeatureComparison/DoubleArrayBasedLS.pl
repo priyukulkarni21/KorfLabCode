@@ -10,29 +10,8 @@ die "usage: ./DoubleArrayBasedLS.pl <bed1> <bed2>" unless @ARGV ==2 ;
 
 my ($inp, $inp2) = @ARGV;
 
-my @arr1 = @{read_bed($inp)}; 		# read bed files into arrays of hashes
-my @arr2 = @{read_bed($inp2)};
-
-
-# read bed file into array of hashes
-# return a reference to the array
-
-sub read_bed{
-	my ($file) = @_;
-	my @arr;
-	open (my $in, $file) or die "error reading file";
-	while (<$in>){
-		chomp;
-		my ($chr, $start, $stop) = split (/\t/, $_);
-		push @arr, {
-			chrom => $chr, 
-			beg  => $start, 
-			end => $stop, 
-		};
-	}
-	close $in;
-	return \@arr;
-}
+my @arr1 = @{FeatureComp2::read_bed($inp)}; 		# read bed files into arrays of hashes
+my @arr2 = @{FeatureComp2::read_bed($inp2)};
 
 # so it's an array of hashes. I want to read that
 my $find = 0;

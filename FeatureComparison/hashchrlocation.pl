@@ -17,8 +17,8 @@ die "usage: $0 <bed1> <bed>" unless @ARGV == 2;
 
 my ($bed1, $bed2) = @ARGV;
 
-my $bedfeatures1 = read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
-my $bedfeatures2 = read_bed($bed2);
+my $bedfeatures1 = FeatureComp2::read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
+my $bedfeatures2 = FeatureComp2::read_bed($bed2);
 
 my $b1 = chrom_index($bedfeatures1);	# indexes the features by chrom. Hash key is chromosome and value is the feature.
 my $b2 = chrom_index($bedfeatures2);
@@ -75,28 +75,4 @@ sub chrom_index {
 
 
 
-# For practice, I want to re-write the read_bed for features. A feature is just a hash reference wtih keys chrom, beg, end and values corresponding.
-
-sub read_bed {
-	my ($file) = @_;
-	open (my $in, $file) or die "error opening $file for reading";
-	my @features;
-
-	while(<$in>){
-		chomp;   #chomp off the newline for each line
-		# for each line, also need to split on the tab delimiters and put into chrom, beg, end
-		my ($chr, $start, $stop) = split(/\t/, $_);
-	
-		push @features, {   #for every single line in the bed file, there will be a feature entry.
-			chrom => $chr,
-			beg => $start,
-			end => $stop,
-		};
-	}
-	close $in;
-	return \@features;
-
-}
-
-	
 __END__

@@ -19,4 +19,24 @@ sub overlap {
                else {return 0;}
  	}       
 }
+
+
+
+sub read_bed{
+        my ($file) = @_;
+        my @arr;
+        open (my $in, $file) or die "error reading file";
+        while (<$in>){
+                chomp;
+                my ($chr, $start, $stop) = split (/\t/, $_);
+                push @arr, {
+                        chrom => $chr,
+                        beg  => $start,
+                        end => $stop,
+                };
+        }
+        close $in;
+        return \@arr;
+}
+
 1;
