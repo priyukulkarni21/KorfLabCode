@@ -3,15 +3,15 @@ use FeatureComp2;
 use strict;
 use warnings;
 
+# Approximate location hashing:
+# This is similar to the below (chr-indexed linear search) except that not only is the chromosome indexed, but also the approximate location.
+# For example, you could break up a chromosome into 100 segments or into 10kb pieces.
+
 # Chromosome-indexed linear search: Read both files into hashes where the hash key is the chromosome 
 # and the value is a reference to an array of features. Compare all features on the same chromosomes.
 
 ## Changes I still want to incorporate: 1) check whether to save unique results in  hash vs an array (saving in array here)
 ## 2) put sub read_bed into the FeatureComp2 package
-
-# Approximate location hashing: 
-# This is similar to the above except that not only is the chromosome indexed, but also the approximate location. 
-# For example, you could break up a chromosome into 100 segments or into 10kb pieces.
 
 die "usage: $0 <bed1> <bed>" unless @ARGV == 2;
 
