@@ -22,7 +22,7 @@ sub overlap {
 
 
 
-sub read_bed{
+sub read_bed {
         my ($file) = @_;
         my @arr;
         open (my $in, $file) or die "error reading file";
