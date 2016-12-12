@@ -5,7 +5,6 @@ use FeatureComp2;
 
 ## Sorted list binary search
 ## Read a list of features into an array and sort it. Use a binary search to compare features.
-# Trying it out a simple one with just read bed, no chr/location hashing yet
 
 
 die "usage: $0 <bed1> <bed2>" unless @ARGV == 2;
@@ -19,14 +18,14 @@ my $b1 = chrom_index($bedfeatures1);    # indexes the features by chrom. Hash ke
 my $b2 = chrom_index($bedfeatures2);
 
 
-foreach my $ch (keys %$b1){
-        my @arr = @{$b1->{$ch}};
-	my @arr2 = @{$b2->{$ch}};
-	my @slist2 = sort sortNumeric(@arr2);
+foreach my $chromosome (keys %$b1){
+        my @feats1 = @{$b1->{$chromosome}};
+	my @feats2 = @{$b2->{$chromosome}};
+	my @sortedfeats2 = sort sortNumeric(@feats2);
         
-	foreach my $item (@arr){                # the item is actually a ref to a hash ## need to sort arr
-		if (binary_Search($item, \@slist2)){
-			print $item->{chrom}, "\t", $item->{beg}, "\t", $item->{end},"\n";
+	foreach my $feature (@feats1){                # the item is actually a ref to a hash ## need to sort arr
+		if (binary_Search($feature, \@sortedfeats2)){
+			print $feature->{chrom}, "\t", $feature->{beg}, "\t", $feature->{end},"\n";
 		}		
  
 	}
@@ -49,7 +48,7 @@ sub binary_Search {
 			return 1;
 		}
 
-		elsif ($guess->{beg} > $item->{beg}) {		 # item is first file. guess is second file. 
+		if ($guess->{beg} > $item->{beg}) {		 # item is first file. guess is second file. 
 			$high = $mid - 1;
 		}
 
