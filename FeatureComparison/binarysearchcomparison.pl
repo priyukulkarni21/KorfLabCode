@@ -24,14 +24,14 @@ foreach my $chromosome (keys %$b1){
 	my @sortedfeats2 = sort sortNumeric(@$feats2);
 
 	foreach my $feature (@$feats1){                		# the item is actually a ref to a hash ## need to sort arr
-		if (binary_Search($feature, \@sortedfeats2)){
+		if (binarySearch($feature, \@sortedfeats2)){
 			print $feature->{chrom}, "\t", $feature->{beg}, "\t", $feature->{end},"\n";
 		}	 
 	}
 }
 
 
-sub binary_Search {
+sub binarySearch {
 	my ($item, $list) = @_;
 
 	my $low = 0;
