@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict; 
 use warnings;
-use FeatureComp2;
+use FeatureCompare;
 
 ## Double array-based linear search
 ## Read one file into an array. Open the other file and compare each feature to the array of features.
@@ -10,8 +10,8 @@ die "usage: ./doublearraybasedls.pl <bed1> <bed2>" unless @ARGV == 2 ;
 
 my ($inp, $inp2) = @ARGV;
 
-my $features1 = FeatureComp2::read_bed($inp); 		# call read_bed in FeatureComp2 
-my $features2 = FeatureComp2::read_bed($inp2);	    	# read_bed will read the bed file into array of features (hashes)
+my $features1 = FeatureCompare::read_bed($inp); 		# call read_bed in FeatureComp2 
+my $features2 = FeatureCompare::read_bed($inp2);	    	# read_bed will read the bed file into array of features (hashes)
 
 # main code for double array based linear search: 
 for (my $i = 0; $i < @$features1; $i++){
@@ -21,7 +21,7 @@ for (my $i = 0; $i < @$features1; $i++){
 
 	for (my $j = 0; $j < @$features2; $j++){
 		my $f2 = $features2->[$j];
-		if (FeatureComp2::overlap($f1, $f2)){  			# call overlap   
+		if (FeatureCompare::overlap($f1, $f2)){  			# call overlap   
 			$found = 1;					# if overlap, $found = 1
 		}
 	}

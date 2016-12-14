@@ -11,6 +11,10 @@
 ++ It's not a highly mathematical and computational intensive project. It also doesn't require objects. 
 ++ I think C would be another great language to try out these programs in, and would probably be a little bit faster.
 
+
+
+#
+
 | Method | File1 | File2 | CPU | CMP/s | Mem | Coding |
 |:-------|:------|:------|:----|:------|:----|--------|
 | FBLS   |       |       |     |       |     |        |

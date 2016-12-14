@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict; use warnings;
 use List::MoreUtils qw/ uniq /;
-use FeatureComp2;
+use FeatureCompare;
 
 ## Open up one file and grab the first feature. Open up a second file and compare the feature to all other features. Repeat until done.
 ## as many lines as there are in the first file, open it up.
@@ -11,7 +11,7 @@ unless (@ARGV == 2) {die "usage: ./FeatureComp2.pl <bed1> <bed2>"};
 ## Count the lines in the first bed file
 
 open(my $in, "<", $ARGV[0]) or die "error opening $ARGV[0] for reading";	
-my $count =0;
+my $count = 0;
 while(<$in>){
 	$count++
 }
@@ -52,7 +52,7 @@ for (my $i = 0; $i <= $count; $i++){		# for each of the lines in first bed file
 			end => $stop2,
 			);
 		
-		$find = overlap(\%feature, \%feature2);	# call overlap in FeatureComp2 package. returns 0 or 1.
+		$find = FeatureCompare::overlap(\%feature, \%feature2);	# call overlap in FeatureComp2 package. returns 0 or 1.
 			
 		if ($find == 1){	# if find is 1, which means found an overlap, then push onto array that feature from file 1
 			my $str = "$feature{chrom}\t$feature{beg}\t$feature{end}";
@@ -68,7 +68,7 @@ $" = "\n";
 print "@arr2","\n";	# print 
 
 
-
+__END__
 sub overlap {
          my ($f1, $f2) = @_;
 

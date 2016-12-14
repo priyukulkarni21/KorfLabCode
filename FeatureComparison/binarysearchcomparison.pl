@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use FeatureComp2;
+use FeatureCompare;
 
 ## Sorted list binary search
 ## Read a list of features into an array and sort it. Use a binary search to compare features.
@@ -11,8 +11,8 @@ die "usage: $0 <bed1> <bed2>" unless @ARGV == 2;
 
 my ($bed1, $bed2) = @ARGV;
 
-my $bedfeatures1 = FeatureComp2::read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
-my $bedfeatures2 = FeatureComp2::read_bed($bed2);
+my $bedfeatures1 = FeatureCompare::read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
+my $bedfeatures2 = FeatureCompare::read_bed($bed2);
 
 my $b1 = chrom_index($bedfeatures1);    # indexes the features by chrom. Hash key is chromosome and value is the feature.
 my $b2 = chrom_index($bedfeatures2);
@@ -41,7 +41,7 @@ sub binarySearch {
 		my $mid = int(($low + $high)/2);
 		my $guess =  @$list[$mid];
 		
-		if (FeatureComp2::overlap($item, $guess)){	# $guess is a feature in the list. $item is a feature. 
+		if (FeatureCompare::overlap($item, $guess)){	# $guess is a feature in the list. $item is a feature. 
 			return 1;				# if overlap, return 1
 		}
 

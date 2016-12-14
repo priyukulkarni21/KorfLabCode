@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use FeatureComp2;
+use FeatureCompare;
 use strict;
 use warnings;
 
@@ -7,14 +7,14 @@ use warnings;
 # and the value is a reference to an array of features. Compare all features on the same chromosomes.
 
 ## Changes I still want to incorporate: 1) check whether to save unique results in  hash vs an array (saving in array here)
-## 2) put sub read_bed into the FeatureComp2 package
+## 2) put sub read_bed into the FeatureCompare package
 
 die "usage: $0 <bed1> <bed>" unless @ARGV == 2;
 
 my ($bed1, $bed2) = @ARGV;
 
-my $bedfeatures1 = FeatureComp2::read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
-my $bedfeatures2 = FeatureComp2::read_bed($bed2);
+my $bedfeatures1 = FeatureCompare::read_bed($bed1);  # a reference to an array of features. can dereference using @$bedfile1
+my $bedfeatures2 = FeatureCompare::read_bed($bed2);
 
 my $b1 = chrom_index($bedfeatures1);	# indexes the features by chrom. Hash key is chromosome and value is the feature.
 my $b2 = chrom_index($bedfeatures2);
@@ -29,7 +29,7 @@ foreach my $chr (keys %$b1){
         foreach my $item (@arr){		# the item is actually a ref to a hash
 		my $find = 0;
                 foreach my $item2(@arr2){
-                        $find = FeatureComp2::overlap($item, $item2);
+                        $find = FeatureCompare::overlap($item, $item2);
 			if ($find == 1){
                         	#$results{$item} = 1;    
 				push(@results, $item) unless grep{$_ eq $item} @results;
