@@ -1,12 +1,11 @@
 #!/usr/bin/perl
 use strict; use warnings;
 use FeatureComp2;
-use List::MoreUtils qw/ uniq /;
 
 ## Double array-based linear search
 ## Read one file into an array. Open the other file and compare each feature to the array of features.
 
-die "usage: ./ArrayBasedLS.pl <bed1> <bed2>" unless @ARGV ==2 ;
+die "usage: ./DoubleArrayBasedLS.pl <bed1> <bed2>" unless @ARGV == 2 ;
 
 my ($inp, $inp2) = @ARGV;
 
@@ -16,8 +15,6 @@ my $features2 = FeatureComp2::read_bed($inp2);
 
 # read bed file into array of hashes
 # return a reference to the array
-
-
 # so it's an array of hashes. I want to read that
 
 
