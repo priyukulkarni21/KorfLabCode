@@ -1,6 +1,15 @@
-# ChromosomeIndexedSearch much faster than the DoubleArrayBasedLS
-# ChromosomeIndexedSearch does the same thing as DoubleArrayBasedLS at first: it reads in the files and makes an array of features for each.
-# Then, it indexes each array of features by chromosome. So now there is a hash for each file, with key as chromosome and value as corresponding array of features.
+# File Based (Linear) Search : slow 
+# Double Array Based (Linear) Search : okay but slow with large files
+# Chromosome Indexed (Linear) Search : hash structure; works much better with using chr as key and all the chr's features in an array as value
+# Chromosome Indexed Location Hashing : like chr indexed, and add on location hashing (slices of the chr)
+ 
+
+# An interesting topic would be to look at this in different languages. Right now, it's in Perl. Can also write in C, Python, and more.
+# Why Perl? 
+++ Using hashes in Perl makes working with biological data such as Browser Extensible Data (BED) files an easy task. 
+++ Perl is usually the go-to language for me. It's good to write scripts in and work with bioinformatics data. That's the main reason I wrote these in Perl first.  
+++ It's not a highly mathematical and computational intensive project. It also doesn't require objects. 
+++ I think C would be another great language to try out these programs in, and would probably be a little bit faster.
 
 | Method | File1 | File2 | CPU | CMP/s | Mem | Coding |
 |:-------|:------|:------|:----|:------|:----|--------|
@@ -11,3 +20,5 @@
 | BS     |       |       |     |       |     |        |
 | ALH    |       |       |     |       |     |        |
 | DSL    |       |       |     |       |     |        |
+
+
