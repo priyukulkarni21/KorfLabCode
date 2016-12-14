@@ -30,8 +30,7 @@ foreach my $chr (keys %$b1){
 		my $find = 0;
                 foreach my $item2(@arr2){
                         $find = FeatureCompare::overlap($item, $item2);
-			if ($find == 1){
-                        	#$results{$item} = 1;    
+			if ($find == 1){   
 				push(@results, $item) unless grep{$_ eq $item} @results;
 			}	
                 }
