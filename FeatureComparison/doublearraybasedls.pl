@@ -15,16 +15,15 @@ my $features2 = FeatureCompare::read_bed($inp2);	    	# read_bed will read the b
 
 # main code for double array based linear search: 
 for (my $i = 0; $i < @$features1; $i++){
-	
 	my $f1 = $features1->[$i];
 	my $found = 0;
-
 	for (my $j = 0; $j < @$features2; $j++){
 		my $f2 = $features2->[$j];
 		if (FeatureCompare::overlap($f1, $f2)){  			# call overlap   
 			$found = 1;					# if overlap, $found = 1
 		}
 	}
+}
 	
 	if ($found == 1){
 		print $f1->{chrom}, "\t", $f1->{beg}, "\t", $f1->{end}, "\n";		# print if $found = 1 
