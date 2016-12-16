@@ -55,7 +55,7 @@ sub chrom_index {
 	my ($features) = @_;
 	my %bed;
 
-	foreach my $feauture (@$features){
+	foreach my $feature (@$features){
 		my $chr = $feature->{chrom};
 		push (@{$bed{$chr}}, $item);
 	}
