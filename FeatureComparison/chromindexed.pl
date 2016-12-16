@@ -24,14 +24,14 @@ my $b2 = chrom_index($bedfeatures2);
 
 my @results;
 foreach my $chr (keys %$b1){
-        my @arr = @{$b1->{$chr}};
-        my @arr2 = @{$b2->{$chr}};
-        foreach my $item (@arr){		# the item is actually a ref to a hash
+        my @feats = @{$b1->{$chr}};
+        my @feats2 = @{$b2->{$chr}};
+        foreach my $feature (@feats){		# the item is actually a ref to a hash
 		my $find = 0;
-                foreach my $item2(@arr2){
-                        $find = FeatureCompare::overlap($item, $item2);
+                foreach my $feature2 (@feats2){
+                        $find = FeatureCompare::overlap($feature, $feature2);
 			if ($find == 1){   
-				push(@results, $item) unless grep{$_ eq $item} @results;
+				push(@results, $feature) unless grep{$_ eq $feature} @results;
 			}	
                 }
         }
@@ -39,8 +39,8 @@ foreach my $chr (keys %$b1){
 
 
 # print out
-foreach my $item(@results){
-	print $item->{chrom}, "\t", $item->{beg}, "\t", $item->{end},"\n";
+foreach my $feature (@results){
+	print $feature->{chrom}, "\t", $feature->{beg}, "\t", $feature->{end},"\n";
 }
 
 
@@ -55,8 +55,8 @@ sub chrom_index {
 	my ($features) = @_;
 	my %bed;
 
-	foreach my $item (@$features){
-		my $chr = $item->{chrom};
+	foreach my $feauture (@$features){
+		my $chr = $feature->{chrom};
 		push (@{$bed{$chr}}, $item);
 	}
 	return \%bed;
