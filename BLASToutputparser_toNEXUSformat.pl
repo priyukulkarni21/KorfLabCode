@@ -46,7 +46,9 @@ foreach my $qid (keys %data) {#for each my queryid in hash, print query
 	}
 }
 close $out;
-
+#Next: Want to make a distance matrix of these selected regions to see which regions are clustering/ similar to each other, if any. 
+## One way to visualize this is to use the SplitsTree Program. This requires a distance matrix to be made in the first place. 
+## And nexus format too. So that's what is being done below. Also, the distance is calculated using 1/score in this case. 
 #nexus format
 print $out2("#NEXUS\n\n\nBEGIN taxa;\n\tDIMENSIONS ntax= $count\nTAXLABELS\n");
 foreach my $qid (keys %data){
@@ -66,7 +68,7 @@ foreach my $qid (keys %data){
 	
 		for (my $i=0; $i< @array_qid; $i++){  # to get the size of an array, just $i< @array_qid
 			if ( defined $data{$qid}{$array_qid[$i]} ) {
-				my $new = (1/ $data{$qid}{$array_qid[$i]}); 
+				my $new = (1/ $data{$qid}{$array_qid[$i]});   ## 1 divided by score is a good way to make this distance matrix.
 				printf $out2("%.5f\t" , $new);
 							}
 			else{
